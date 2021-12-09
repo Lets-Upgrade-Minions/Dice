@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dice</title>
+</head>
+<body>
+   Guess your number - Person 1: <input type="text" class="person"> <br><br>
+   Guess your number: - Person 2 <input type="text" class="person"><br>
+   <button id="btn">Lets Roll</button>
+    <div id="result"></div>
+
+
+
+   <script>
+       let score = [0,0,0]
+      person = document.getElementsByClassName("person");
+        btn = document.getElementById("btn");
+        result = document.getElementById("result");
+        btn.addEventListener("click", decideWinner)
+        function decideWinner(){
+            v1 = person[0].value;
+            v2 = person[1].value;
+            dice = [1,2,3,4,5,6]
+            roll = dice[parseInt(Math.random()*dice.length)]
+            if(v1 == roll){
+                score[0] += 1;
+            }
+            else if(v2 == roll){
+                score[1] += 1;
+            }
+            else{
+                score[2] += 1;
+            }
+            result.innerHTML = "Player1: " + score[0] + " Player2: " + score[1] + " Draw: " + score[2];
+
+
+        }
+
+   </script>
+   
+</body>
+
+</html>
+

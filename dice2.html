@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dice</title>
+</head>
+<body>
+   
+    Person1: <input type="text" value = "Abhishek">
+    <button id="1" class="dice">Roll the Dice</button>
+     Result: <span></span> <br><br>
+
+     Person2: <input type="text" value = "Pankaj">
+    <button id="2" class="dice">Roll the Dice</button>
+     Result: <span></span> <br><br>
+
+     Person3: <input type="text" value = "Shyam">
+    <button id="3" class="dice">Roll the Dice</button>
+     Result: <span></span> <br><br>
+
+     Person4: <input type="text" value = "Ram">
+    <button id="4" class="dice">Roll the Dice</button>
+     Result: <span></span> <br><br>
+
+     Person5: <input type="text" value = "Mohan">
+    <button id="5" class="dice">Roll the Dice</button>
+     Result: <span></span> <br><br>
+
+     <button id="winner">Find Winner</button>
+     <div class="winMessage"></div>
+   
+
+   <script>
+      person = document.querySelectorAll("input")
+      button = document.querySelectorAll(".dice")
+      span = document.querySelectorAll("span")
+      winbutton = document.querySelector("#winner")
+      winMessage = document.querySelector(".winMessage")
+      console.log(person)
+      
+    //   button[0].disabled = true
+      resultarr = new Array(person.length).fill(-1)
+      
+    //   button[0].addEventListener("click", rollDice)
+
+      for(t of button){
+        //   console.log(t.id)
+        t.addEventListener("click", diceRoll)
+      }
+      function diceRoll(e){
+        user_id = e.target.id
+        choices = [1,2,3,4,5,6]
+        dice_result = choices[parseInt(
+            Math.random()*choices.length)]
+        span[user_id-1].innerText = dice_result
+        resultarr[user_id-1] = dice_result
+    }
+     winbutton.addEventListener("click", decideWinner)
+       
+     function decideWinner(){
+         max = resultarr[0]
+         pos = []
+         for( t of resultarr){
+             if(t > max){
+                 max = t
+             }
+         }
+         for(i = 0 ; i<resultarr.length; i++){
+             if(resultarr[i] == max){
+                 pos.push(i)
+             }
+         }
+         names = ""
+         for( t of pos){
+             names = names+person[t].value+","
+         }
+         winMessage.innerText = `Winner is/are ${names} as they scored ${max}`
+
+     }
+   </script>
+   
+</body>
+
+</html>
+
